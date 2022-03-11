@@ -1,0 +1,49 @@
+{
+  "name": "autorizadores-pm",
+  "version": "2.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "start": "node api/server.js",
+    "start-dev": "nodemon ./api/server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Alex Yepez <alex.yepez@outlook.com>",
+  "license": "ISC",
+  "dependencies": {
+    "@azure/identity": "^1.5.2",
+    "@azure/keyvault-secrets": "^4.3.0",
+    "@types/sequelize": "^4.28.9",
+    "azure-keyvault": "^3.0.5",
+    "cors": "2.8.5",
+    "csv2json": "^2.0.2",
+    "csvtojson": "^2.0.10",
+    "dotenv": "8.2.0",
+    "express": "4.17.1",
+    "express-asyncify": "1.0.1",
+    "jsonwebtoken": "8.5.1",
+    "keytar": "^7.7.0",
+    "lodash": "4.17.19",
+    "minimist": "1.2.5",
+    "moment": "2.27.0",
+    "moodle-client": "^0.5.2",
+    "moodle-rest-client": "^0.1.0",
+    "multer": "1.4.2",
+    "mysql2": "2.1.0",
+    "nodejs-nodemailer-outlook": "^1.2.3",
+    "replaceall": "^0.1.6",
+    "request": "2.88.2",
+    "sequelize": "6.3.4",
+    "soap": "0.32.0",
+    "socket.io": "2.3.0",
+    "speakeasy": "^2.0.0",
+    "tedious": "^9.2.1",
+    "uuid": "8.3.0",
+    "xls-to-json-lc": "0.3.4",
+    "xlsx-to-json-lc": "0.5.0"
+  },
+  "devDependencies": {
+    "nodemon": "2.0.4",
+    "standard": "14.3.4"
+  }
+}
