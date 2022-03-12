@@ -6,13 +6,13 @@ const db = require('../../../db')
 
 const api = asyncify(express.Router())
 
-let services, Participante
+let services, DetalleInscripcion
 
 api.use('*', async (req, res, next) => {
   if (!services) {
     try {
       services = await db()
-      Participante = services.Participante
+      DetalleInscripcion = services.DetalleInscripcion
     } catch (e) {
       next(e)
     }
@@ -22,18 +22,18 @@ api.use('*', async (req, res, next) => {
 
 api.get('/findAll', async (req, res, next) => {
   const {
-    _page, _limit,  idParticipante, ci, apellidos,
-    nombres, fechaNacimiento, ciudad, email, telefono,
+    _page, _limit,  idDetalleCarrera, inicioCarrera, finCarrera,
+    tiempoCarrera, posicion, CabeceraInscripcion_idCabeceraInscripcion,
   } = req.query
   let result = {
     count: 0,
     rows: [],
   }
   try {
-    result = await Participante.findAll({
+    result = await DetalleInscripcion.findAll({
       where: {
-        idParticipante, ci, apellidos,
-        nombres, fechaNacimiento, ciudad, email, telefono,
+        idDetalleCarrera, inicioCarrera, finCarrera,
+    tiempoCarrera, posicion, CabeceraInscripcion_idCabeceraInscripcion,
       },
       pageSize: parseInt(_limit || 1000),
       page: parseInt(_page || 1) - 1,
@@ -45,17 +45,17 @@ api.get('/findAll', async (req, res, next) => {
 })
 
 api.get('/findOne', async (req, res, next) => {
-  const {  idParticipante, ci, apellidos,
-    nombres, fechaNacimiento, ciudad, email, telefono, } = req.query
+  const {  idDetalleCarrera, inicioCarrera, finCarrera,
+    tiempoCarrera, posicion, CabeceraInscripcion_idCabeceraInscripcion, } = req.query
   let result = {
     count: 0,
     rows: [],
   }
   try {
-    result = await Participante.findOne({
+    result = await DetalleInscripcion.findOne({
       where: {
-        idParticipante, ci, apellidos,
-        nombres, fechaNacimiento, ciudad, email, telefono,
+        idDetalleCarrera, inicioCarrera, finCarrera,
+    tiempoCarrera, posicion, CabeceraInscripcion_idCabeceraInscripcion,
       },
     })
     res.send(result)
@@ -71,7 +71,7 @@ api.get('/findById', async (req, res, next) => {
     rows: [],
   }
   try {
-    result = await Participante.findById(id)
+    result = await DetalleInscripcion.findById(id)
     res.send(result)
   } catch (e) {
     return next(e)
@@ -82,9 +82,9 @@ api.post('/createOrUpdate', async (req, res, next) => {
   const model = req.body
   
   let obj = null
- 
+  
   try {
-    obj = await Participante.createOrUpdate(model)
+    obj = await DetalleInscripcion.createOrUpdate(model)
   } catch (e) {
     return next(e)
   }
@@ -93,12 +93,12 @@ api.post('/createOrUpdate', async (req, res, next) => {
 
 
 api.get('/remove', async (req, res, next) => {
-  const {  idParticipante } = req.query
+  const {  idDetalleCarrera } = req.query
   
   try {
-    result = await Participante.remove({
+    result = await DetalleInscripcion.remove({
       where: {
-        idParticipante
+        idDetalleCarrera
       },
     })
     res.send(result)

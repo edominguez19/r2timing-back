@@ -6,13 +6,13 @@ const db = require('../../../db')
 
 const api = asyncify(express.Router())
 
-let services, Participante
+let services, Categoria
 
 api.use('*', async (req, res, next) => {
   if (!services) {
     try {
       services = await db()
-      Participante = services.Participante
+      Categoria = services.Categoria
     } catch (e) {
       next(e)
     }
@@ -22,18 +22,16 @@ api.use('*', async (req, res, next) => {
 
 api.get('/findAll', async (req, res, next) => {
   const {
-    _page, _limit,  idParticipante, ci, apellidos,
-    nombres, fechaNacimiento, ciudad, email, telefono,
+    _page, _limit,  idCategoria, nombre, descripcion,
   } = req.query
   let result = {
     count: 0,
     rows: [],
   }
   try {
-    result = await Participante.findAll({
+    result = await Categoria.findAll({
       where: {
-        idParticipante, ci, apellidos,
-        nombres, fechaNacimiento, ciudad, email, telefono,
+        idCategoria, nombre, descripcion,
       },
       pageSize: parseInt(_limit || 1000),
       page: parseInt(_page || 1) - 1,
@@ -45,17 +43,15 @@ api.get('/findAll', async (req, res, next) => {
 })
 
 api.get('/findOne', async (req, res, next) => {
-  const {  idParticipante, ci, apellidos,
-    nombres, fechaNacimiento, ciudad, email, telefono, } = req.query
+  const {  idCategoria, nombre, descripcion, } = req.query
   let result = {
     count: 0,
     rows: [],
   }
   try {
-    result = await Participante.findOne({
+    result = await Categoria.findOne({
       where: {
-        idParticipante, ci, apellidos,
-        nombres, fechaNacimiento, ciudad, email, telefono,
+        idCategoria, nombre, descripcion,
       },
     })
     res.send(result)
@@ -71,7 +67,7 @@ api.get('/findById', async (req, res, next) => {
     rows: [],
   }
   try {
-    result = await Participante.findById(id)
+    result = await Categoria.findById(id)
     res.send(result)
   } catch (e) {
     return next(e)
@@ -82,9 +78,8 @@ api.post('/createOrUpdate', async (req, res, next) => {
   const model = req.body
   
   let obj = null
- 
   try {
-    obj = await Participante.createOrUpdate(model)
+    obj = await Categoria.createOrUpdate(model)
   } catch (e) {
     return next(e)
   }
@@ -93,12 +88,12 @@ api.post('/createOrUpdate', async (req, res, next) => {
 
 
 api.get('/remove', async (req, res, next) => {
-  const {  idParticipante } = req.query
+  const {  idCategoria } = req.query
   
   try {
-    result = await Participante.remove({
+    result = await Categoria.remove({
       where: {
-        idParticipante
+        idCategoria
       },
     })
     res.send(result)

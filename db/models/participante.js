@@ -3,6 +3,7 @@
 const { DataTypes } = require('sequelize')
 const setupDatabase = require('../libs/db')
 
+
 module.exports = function setupParticipanteModel (config) {
 
 	const sequelize = setupDatabase(config)

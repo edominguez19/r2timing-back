@@ -16,10 +16,18 @@ const cors = require('cors')
 const { getConfig } = require('../config')
 
 const paticipanteAuth = require('./routes/participante-auth')
-
-
-
 const participante = require('./routes/entities/participantes')
+const carrera = require('./routes/entities/carrera')
+const cabecerainscripcion = require('./routes/entities/cabecera-inscripcion')
+const carreracategoria = require('./routes/entities/carrera-categoria')
+const categoria = require('./routes/entities/categoria')
+const detallecarrera = require('./routes/entities/detalle-carrera')
+const detalleinscripcion = require('./routes/entities/detalle-inscripcion')
+const distancia = require('./routes/entities/distancia')
+const permiso = require('./routes/entities/permiso')
+const rolpermiso = require('./routes/entities/rol-permiso')
+const rol = require('./routes/entities/rol')
+const usuario = require('./routes/entities/usuario')
 
 const app = asyncify(express())
 let server
@@ -51,6 +59,17 @@ app.use(express.json({ limit: '50mb' }))
 app.use('/participante-auth', paticipanteAuth)
 
 app.use('/participante', participante)
+app.use('/carrera', carrera)
+app.use('/cabecera-inscripcion', cabecerainscripcion)
+app.use('/carrera-categoria', carreracategoria)
+app.use('/categoria', categoria)
+app.use('/detalle-carrera', detallecarrera)
+app.use('/detalle-inscripcion', detalleinscripcion)
+app.use('/distancia', distancia)
+app.use('/permiso', permiso)
+app.use('/rol-permiso', rolpermiso)
+app.use('/rol', rol)
+app.use('/usuario', usuario)
 
 
 app.use((err, req, res, next) => {
