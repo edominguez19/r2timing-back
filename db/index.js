@@ -16,7 +16,7 @@ const setupDistanciaModel = require('./models/distancia')
 const setupPermisosModel = require('./models/permiso')
 const setupRolPermisosModel = require('./models/rol-permiso')
 const setupRolModel = require('./models/rol')
-const setupUsuarioModel = require('./models/usuario')
+const setupUsuarioModel = require('./models/usuario.js')
 /*Libs*/
 
 
@@ -31,7 +31,7 @@ const setupDistancia = require('./libs/distancia')
 const setupPermisos = require('./libs/permiso')
 const setupRolPermisos= require('./libs/rol-permiso')
 const setupRol = require('./libs/rol')
-const setupUsuario = require('./libs/usuario')
+const setupUsuario = require('./libs/auth/usuario.js')
 module.exports = async function () {
   const configEnv = await getConfig()
   const { db } = configEnv

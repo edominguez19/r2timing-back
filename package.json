@@ -16,6 +16,7 @@
     "@types/sequelize": "^4.28.9",
     "azure-keyvault": "^3.0.5",
     "cors": "2.8.5",
+    "crypto-js": "^4.1.1",
     "csv2json": "^2.0.2",
     "csvtojson": "^2.0.10",
     "dotenv": "8.2.0",

@@ -3,7 +3,7 @@
 const express = require('express')
 const asyncify = require('express-asyncify')
 const db = require('../../../db')
-
+const authMiddleware = require('../../middlewares/auth')
 const api = asyncify(express.Router())
 
 let services, Carrera
@@ -78,9 +78,8 @@ api.get('/findById', async (req, res, next) => {
   }
 })
 
-api.post('/createOrUpdate', async (req, res, next) => {
+api.post('/createOrUpdate',authMiddleware, async (req, res, next) => {
   const model = req.body
-
   let obj = null
 
   try {

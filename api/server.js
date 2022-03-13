@@ -14,8 +14,8 @@ const asyncify = require('express-asyncify')
 const cors = require('cors')
 
 const { getConfig } = require('../config')
-
-const paticipanteAuth = require('./routes/participante-auth')
+const authMiddleware = require('./middlewares/auth')
+const authRoute = require('./routes/auth')
 const participante = require('./routes/entities/participantes')
 const carrera = require('./routes/entities/carrera')
 const cabecerainscripcion = require('./routes/entities/cabecera-inscripcion')
@@ -56,8 +56,6 @@ const corsOptions = {
 app.use(cors(corsOptions))
 app.use(express.json({ limit: '50mb' }))
 
-app.use('/participante-auth', paticipanteAuth)
-
 app.use('/participante', participante)
 app.use('/carrera', carrera)
 app.use('/cabecera-inscripcion', cabecerainscripcion)
@@ -70,7 +68,8 @@ app.use('/permiso', permiso)
 app.use('/rol-permiso', rolpermiso)
 app.use('/rol', rol)
 app.use('/usuario', usuario)
-
+app.use('/auth', authRoute)
+app.use(authMiddleware)
 
 app.use((err, req, res, next) => {
   console.log(err, 'ok')

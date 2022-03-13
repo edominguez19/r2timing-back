@@ -82,7 +82,6 @@ api.post('/createOrUpdate', async (req, res, next) => {
   const model = req.body
   
   let obj = null
-  //dina
   try {
     obj = await Usuario.createOrUpdate(model)
   } catch (e) {
@@ -90,6 +89,19 @@ api.post('/createOrUpdate', async (req, res, next) => {
   }
   res.send(obj)
 })
+
+api.post('/updateOrCreateByUsername', async (req, res, next) => {
+  const model = req.body
+  
+  let obj = null
+  try {
+    obj = await Usuario.updateOrCreateByUsername(model)
+  } catch (e) {
+    return next(e)
+  }
+  res.send(obj)
+})
+
 
 
 api.get('/remove', async (req, res, next) => {

@@ -86,8 +86,6 @@ module.exports = function setupUsuario (UsuarioModel) {
 
 
   
-
-  
   async function createOrUpdate (model) {
     return new Promise((resp, reject) => {
       UsuarioModel.findOne({
